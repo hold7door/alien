@@ -48,3 +48,17 @@ check_root() {
        exit 1
     fi
 }
+
+
+check_setup_complete() {
+    groups=("dev" "stage" "prod")
+
+    # check if all necessary groups where created
+    for group in "${groups[@]}"; do
+        if ! grep -q "^$group:" /etc/group; then
+            log "$RED" "Setup incomplete. Group '$group' does not exist."
+            log "$RED" "You need to run setup.sh first."
+            exit 1
+        fi
+    done
+}

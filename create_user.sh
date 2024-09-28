@@ -2,8 +2,11 @@
 
 check_root
 
+source ./access_level.sh
+
 NEW_USER=$(get_input "Enter username for new user")
 ALLOW_SUDO_ACCESS=$(get_input "Allow sudo access(yes/no)" "no")
+ACCESS_LEVEL=$(get_input "Provide access level (dev/stage/prod)" "dev")
 
 print_header "SSH Key Setup"
 
@@ -44,5 +47,10 @@ setup_ssh_key() {
 }
 
 setup_ssh_key "$SSH_PUBLIC_KEY"
+
+
+log "$GREEN" "Assigning access level $ACCESS_LEVEL to $NEW_USER..."
+
+update_access_level "$NEW_USER" "$ACCESS_LEVEL"
 
 log "$GREEN" "User created"
