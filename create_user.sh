@@ -4,7 +4,6 @@ check_root
 
 source ./user_utils.sh
 
-# base inputs
 NEW_USER=$(get_input "Enter username for new user")
 ALLOW_SUDO_ACCESS=$(get_input "Allow sudo access(yes/no)" "no")
 ACCESS_LEVEL=$(get_input "Provide access level (dev/stage/prod)" "dev")
